@@ -1,0 +1,120 @@
+﻿<Window x:Class="Projekt_PO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekt_PO"
+        xmlns:views="clr-namespace:Projekt_PO.Views"
+        xmlns:viewmodels="clr-namespace:Projekt_PO.ViewModels"
+        mc:Ignorable="d"
+        Title="WPF - Obsługa magazynów" Height="540" Width="1200" FontSize="24" FontWeight="Bold" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF33C163">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ContentControl Content="{ Binding }" Grid.Column="1" Grid.Row="1" Grid.RowSpan="8" Height="Auto" Width="Auto"/>
+        <Label x:Name="lblwindowname" Content="Window Name" Grid.Column="1" HorizontalAlignment="Center"></Label>
+        <StackPanel Grid.Row="1">
+            <Button Name="btnMagazyny" Height="60" Width="250" HorizontalAlignment="Left">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="MagazynyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
+                    <TextBlock Text="Magazyny" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Button Name="btnPracownicy" Height="60" Width="250" HorizontalAlignment="Left">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="PracownicyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
+                    <TextBlock Text="Pracownicy" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Button Name="btnFaktury" Height="60" Width="250" HorizontalAlignment="Left" Click="btnFaktury_Click">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="FakturyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
+                    <TextBlock Text="Faktury" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            <Button Name="btnPakiety" Height="60" Width="250" HorizontalAlignment="Left">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="PakietyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
+                    <TextBlock Text="Pakiety" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="5">
+            <Button Name="btnPosition" Height="60" Width="250" HorizontalAlignment="Left">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="PositionImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
+                    <TextBlock Text="Position" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="6">
+            <Button Name="btnLogOut" Height="60" Width="250" HorizontalAlignment="Left">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="LogOutImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
+                    <TextBlock Text="Log Out" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="7">
+            <Button Name="btnExit" Height="60" Width="250" HorizontalAlignment="Left">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="ExitImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
+                    <TextBlock Text="Exit" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+    </Grid>
+    <Window.Resources>
+        <DataTemplate x:Name="DepartmentTemplate" DataType="{ x:Type viewmodels:FakturyViewModel }">
+            <views:FakturyList>
+                
+            </views:FakturyList>
+        </DataTemplate>
+    </Window.Resources>
+</Window>
