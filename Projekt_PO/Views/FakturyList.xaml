@@ -17,16 +17,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Margin="40, 5, 40, 5" Grid.Column="0" Name="btnAdd" Content="Add" FontSize="18" FontWeight="Bold"/>
-            <Button Margin="40, 5, 40, 5" Grid.Column="1" Name="btnUpdate" Content="Update" FontSize="18" FontWeight="Bold"/>
+            <Button Margin="40, 5, 40, 5" Grid.Column="0" Name="btnAdd" Content="Add" FontSize="18" FontWeight="Bold" Click="btnAdd_Click"/>
+            <Button Margin="40, 5, 40, 5" Grid.Column="1" Name="btnUpdate" Content="Update" FontSize="18" FontWeight="Bold" Click="btnUpdate_Click"/>
             <Button Margin="40, 5, 40, 5" Grid.Column="2" Name="btnDelete" Content="Delete" FontSize="18" FontWeight="Bold"/>
         </Grid>
-        <DataGrid x:Name="gridFaktury" IsReadOnly="True" AutoGenerateColumns="False" SelectionUnit="FullRow">
+        <DataGrid x:Name="gridFaktury" IsReadOnly="True" AutoGenerateColumns="False" SelectionUnit="FullRow" FontSize="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdFaktury" Width="*" Binding="{Binding IdFaktury}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Numer faktury" Width="Auto" Binding="{Binding NumerFaktury}"/>
-                <DataGridTextColumn Header="Wartość" Width="Auto" Binding="{Binding HurtowniaId.Nazwa}"/>
-                <DataGridTextColumn Header="Wartość" Width="Auto" Binding="{Binding WystawiajacyId.Imie}"/>
+                <DataGridTextColumn Header="Hurtownia" Width="Auto" Binding="{Binding Hurtownia.Nazwa}"/>
+                <DataGridTextColumn Header="Wystawiający" Width="Auto" Binding="{Binding Wystawiajacy.Nazwisko }"/>
                 <DataGridTextColumn Header="Wartość" Width="Auto" Binding="{Binding Wartosc}"/>
                 <DataGridTextColumn Header="Opis" Width="Auto" Binding="{Binding Opis}"/>
                 <DataGridTextColumn Header="Data Wystawienia" Width="*" Binding="{Binding DataWystawienia}"/>

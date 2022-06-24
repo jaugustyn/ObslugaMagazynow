@@ -111,10 +111,15 @@
         </StackPanel>
     </Grid>
     <Window.Resources>
-        <DataTemplate x:Name="DepartmentTemplate" DataType="{ x:Type viewmodels:FakturyViewModel }">
+        <DataTemplate x:Name="FakturyTemplate" DataType="{ x:Type viewmodels:FakturyViewModel }">
             <views:FakturyList>
                 
             </views:FakturyList>
         </DataTemplate>
+        <!-- <DataTemplate x:Name="PracownicyTemplate" DataType="{ x:Type viewmodels:PracownicyViewModel }"> -->
+        <!--     <views:PracownicyList> -->
+        <!-- -->
+        <!--     </views:PracownicyList> -->
+        <!-- </DataTemplate> -->
     </Window.Resources>
 </Window>
