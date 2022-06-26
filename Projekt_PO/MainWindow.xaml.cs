@@ -31,5 +31,11 @@ namespace Projekt_PO
             lblwindowname.Content = "Lista faktur";
             DataContext = new FakturyViewModel();
         }
+
+        private void btnPracownicy_Click(object sender, RoutedEventArgs e)
+        {
+            lblwindowname.Content = "Lista pracowników";
+            DataContext = new PracownicyViewModel();
+        }
     }
 }

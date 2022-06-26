@@ -38,7 +38,7 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <Button Name="btnPracownicy" Height="60" Width="250" HorizontalAlignment="Left">
+            <Button Name="btnPracownicy" Height="60" Width="250" HorizontalAlignment="Left" Click="btnPracownicy_Click">
                 <Grid Width="230">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -116,10 +116,10 @@
                 
             </views:FakturyList>
         </DataTemplate>
-        <!-- <DataTemplate x:Name="PracownicyTemplate" DataType="{ x:Type viewmodels:PracownicyViewModel }"> -->
-        <!--     <views:PracownicyList> -->
-        <!-- -->
-        <!--     </views:PracownicyList> -->
-        <!-- </DataTemplate> -->
+        <DataTemplate x:Name="PracownicyTemplate" DataType="{x:Type viewmodels:PracownicyViewModel}">
+            <views:PracownicyList>
+
+            </views:PracownicyList>
+        </DataTemplate>
     </Window.Resources>
 </Window>
