@@ -1,28 +1,30 @@
-﻿<UserControl x:Class="Projekt_PO.Views.FakturyList"
+﻿<UserControl x:Class="Projekt_PO.Views.MagazynyList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Projekt_PO.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" FontWeight="Medium" FontSize="18">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded" FontWeight="Medium">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="gridFaktury" IsReadOnly="True" AutoGenerateColumns="False" SelectionUnit="FullRow" FontSize="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionMode="Single">
+        <DataGrid x:Name="gridMagazyny" IsReadOnly="True" AutoGenerateColumns="False" SelectionUnit="FullRow" FontSize="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="IdFaktury" Width="*" Binding="{Binding IdFaktury}" Visibility="Hidden"/>
-                <DataGridTextColumn Header="Numer faktury" Width="Auto" Binding="{Binding NumerFaktury}"/>
-                <DataGridTextColumn Header="Hurtownia" Width="Auto" Binding="{Binding Hurtownia.Nazwa}"/>
-                <DataGridTextColumn Header="Wystawiający" Width="Auto" Binding="{Binding Wystawiajacy.Nazwisko }"/>
-                <DataGridTextColumn Header="Wartość" Width="Auto" Binding="{Binding Wartosc}"/>
+                <DataGridTextColumn Header="IdMagazynu" Width="*" Binding="{Binding IdMagazynu}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Adres" Width="Auto" Binding="{Binding Adres}"/>
+                <DataGridTextColumn Header="Ilość sektorów" Width="Auto" Binding="{Binding IloscSektorow}"/>
+                <DataGridTextColumn Header="Ilość pracowników" Width="Auto" Binding="{Binding IloscPracownikow}"/>
                 <DataGridTextColumn Header="Opis" Width="Auto" Binding="{Binding Opis}"/>
-                <DataGridTextColumn Header="Data Wystawienia" Width="*" Binding="{Binding DataWystawienia}"/>
+                <DataGridTextColumn Header="Czy aktywny" Width="Auto" Binding="{Binding CzyAktywny}" Visibility="Hidden"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

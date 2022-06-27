@@ -25,40 +25,53 @@ namespace Projekt_PO.Views
         public FakturyList()
         {
             InitializeComponent();
-
-            using (Obsluga_magazynow_DBContext db = new Obsluga_magazynow_DBContext())
             {
-                List<Faktury> list = db.Fakturies.Include(x => x.Wystawiajacy).Include(x => x.Hurtownia).OrderBy(x => x.DataWystawienia).ToList();
-                gridFaktury.ItemsSource = list;
-
+                FillGrid();
             }
         }
+        Obsluga_magazynow_DBContext db = new Obsluga_magazynow_DBContext();
 
+        private void FillGrid()
+        {
+            using (Obsluga_magazynow_DBContext db = new Obsluga_magazynow_DBContext()) // bez tego gridFaktury nie chce się aktualizować po zamknięciu okna hmm
+            {
+                var list = db.Fakturies.Include(x => x.Wystawiajacy).Include(x => x.Hurtownia).OrderBy(x => x.DataWystawienia).ToList();
+                gridFaktury.ItemsSource = list;
+            }
+        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             FakturyPage page = new FakturyPage();
-            // this.Visibility = Visibility.Collapsed;
             page.ShowDialog();
-
-            using (Obsluga_magazynow_DBContext db = new Obsluga_magazynow_DBContext())
-            {
-                List<Faktury> list = db.Fakturies.Include(x => x.Wystawiajacy).Include(x => x.Hurtownia).OrderBy(x => x.DataWystawienia).ToList();
-                gridFaktury.ItemsSource = list;
-
-            }
+            FillGrid();
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Faktury faktura = (Faktury) gridFaktury.SelectedItem;
-            FakturyPage page = new FakturyPage();
-            page.Faktura = faktura;
-            page.ShowDialog();
-            using (Obsluga_magazynow_DBContext db = new Obsluga_magazynow_DBContext())
+            if (faktura != null && faktura.IdFaktury != 0)
             {
-                gridFaktury.ItemsSource = db.Fakturies.Include(x => x.Wystawiajacy).Include(x => x.Hurtownia).OrderBy(x => x.DataWystawienia).ToList();
+                FakturyPage page = new FakturyPage();
+                page.model = faktura;
+                page.ShowDialog();
+                FillGrid();
             }
+        }
 
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Faktury model = (Faktury)gridFaktury.SelectedItem;
+            if (model != null && model.IdFaktury != 0)
+            {
+                if (MessageBox.Show($"Czy jesteś pewien że chcesz usunąć fakturę o nr. {model.NumerFaktury}?", "Uwaga", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    Faktury f = db.Fakturies.Find(model.IdFaktury);
+                    db.Fakturies.Remove(f);
+                    db.SaveChanges();
+                    MessageBox.Show("Faktura została usunięta");
+                    FillGrid();
+                }
+            }
         }
     }
 }

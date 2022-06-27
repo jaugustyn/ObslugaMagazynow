@@ -1,0 +1,66 @@
+﻿<Window x:Class="Projekt_PO.Pages.MagazynyPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekt_PO.Pages"
+        mc:Ignorable="d"
+        Title="PracownicyPage" Height="680" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Dodaj magazyn" Grid.ColumnSpan="3" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="*Adres:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 5, 25, 5"/>
+                <TextBox x:Name="txtAdres" Width="150" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="*Opis:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 5, 25, 5"/>
+                <TextBox x:Name="txtOpis" Width="150" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="*Czy aktywny (operacyjny):" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 5, 25, 5"/>
+                <CheckBox x:Name="chbCzyAktwny" Width="150" Height="20" VerticalContentAlignment="Center" IsChecked="True"/>
+            </StackPanel>
+            <Separator Margin="0, 40, 0, 20"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
+                <Label Content="*Sektory:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Right" Margin="20, 0">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Margin" Value="0, 0, 0, 5" />
+                                <Setter Property="Width" Value="120"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock FontWeight="Bold" Margin="0,0,0,10">ListBox selection</TextBlock>
+                        <Button Name="btnShowSelectedItem" Click="btnShowSelectedItem_Click">Pokaż wybrane</Button>
+                        <Button Name="btnSelectLast" Click="btnSelectLast_Click">Wybierz ostatni</Button>
+                        <Button Name="btnSelectNext" Click="btnSelectNext_Click">Wybierz następny</Button>
+                        <Button Name="btnSelectAll" Click="btnSelectAll_Click">Wybierz wszystkie</Button>
+                    </StackPanel>
+                    <ListBox x:Name="listSektory" Width="Auto" Height="Auto" HorizontalContentAlignment="Stretch" SelectionMode="Multiple" SelectionChanged="lbTodoList_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Oznaczenie}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

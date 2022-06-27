@@ -7,10 +7,11 @@
         xmlns:views="clr-namespace:Projekt_PO.Views"
         xmlns:viewmodels="clr-namespace:Projekt_PO.ViewModels"
         mc:Ignorable="d"
-        Title="WPF - Obsługa magazynów" Height="540" Width="1200" FontSize="24" FontWeight="Bold" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF33C163">
+        Title="WPF - Obsługa magazynów" Height="640" Width="1200" FontSize="24" FontWeight="Bold" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF33C163">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -23,10 +24,10 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ContentControl Content="{ Binding }" Grid.Column="1" Grid.Row="1" Grid.RowSpan="8" Height="Auto" Width="Auto"/>
-        <Label x:Name="lblwindowname" Content="Window Name" Grid.Column="1" HorizontalAlignment="Center"></Label>
+        <ContentControl Content="{ Binding }" Grid.Column="2" Grid.Row="1" Grid.RowSpan="8" Height="Auto" Width="Auto"/>
+        <Label x:Name="lblwindowname" Content="" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <StackPanel Grid.Row="1">
-            <Button Name="btnMagazyny" Height="60" Width="250" HorizontalAlignment="Left">
+            <Button Name="btnMagazyny" Height="60" Width="250" HorizontalAlignment="Left" Click="btnMagazyny_Click">
                 <Grid Width="230">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -74,14 +75,14 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="5">
-            <Button Name="btnPosition" Height="60" Width="250" HorizontalAlignment="Left">
+            <Button Name="btnHurtownie" Height="60" Width="250" HorizontalAlignment="Left" Click="btnHurtownie_Click">
                 <Grid Width="230">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Image x:Name="PositionImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Position" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Hurtownie" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 </Grid>
             </Button>
         </StackPanel>
@@ -120,6 +121,16 @@
             <views:PracownicyList>
 
             </views:PracownicyList>
+        </DataTemplate>
+        <DataTemplate x:Name="HurtownieTemplate" DataType="{x:Type viewmodels:HurtownieViewModel}">
+            <views:HurtownieList>
+
+            </views:HurtownieList>
+        </DataTemplate>
+        <DataTemplate x:Name="MagazynyTemplate" DataType="{x:Type viewmodels:MagazynyViewModel}">
+            <views:MagazynyList>
+
+            </views:MagazynyList>
         </DataTemplate>
     </Window.Resources>
 </Window>

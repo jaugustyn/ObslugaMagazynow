@@ -11,6 +11,9 @@ namespace Projekt_PO.ViewModels
         public int Id { get; set; }
         public int AdresId { get; set; }
         public string Miejscowosc { get; set; }
+        public string KodPocztowy { get; set; }
+        public string Ulica { get; set; }
+        public string NrLokalu { get; set; }
         public int MagazynId { get; set; }
         public string Stanowisko { get; set; }
         public string Imie { get; set; }

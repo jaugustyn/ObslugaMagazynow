@@ -5,23 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Projekt_PO.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded" FontWeight="Medium" FontSize="18">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="6*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
+        
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Margin="40, 5, 40, 5" Grid.Column="0" Name="btnAdd" Content="Add" FontSize="18" FontWeight="Bold" Click="btnAdd_Click"/>
-            <Button Margin="40, 5, 40, 5" Grid.Column="1" Name="btnUpdate" Content="Update" FontSize="18" FontWeight="Bold"/>
-            <Button Margin="40, 5, 40, 5" Grid.Column="2" Name="btnDelete" Content="Delete" FontSize="18" FontWeight="Bold"/>
+            <Label Content="Imie:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtImie" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Height="25"/>
+            <Label Content="Nazwisko:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtNazwisko" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Height="25"/>
+            <Label Content="Stanowisko:" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Name="cmbStanowisko" Grid.Column="3" Grid.Row="1" Height="25" VerticalAlignment="Center" FontWeight="Normal" FontSize="16"/>
+            <Label Content="Magazyn:" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Name="cmbMagazyn" Grid.Column="3" Grid.Row="2" Height="25" VerticalAlignment="Center" FontWeight="Normal" FontSize="16"/>
+            <Button Grid.Column="4" Grid.Row="1" Content="Search" Name="btnSearch" Width="80" Height="25" FontWeight="Normal" FontSize="16" Click="btnSearch_Click"></Button>
+            <Button Grid.Column="4" Grid.Row="2" Content="Clear" Name="btnClear" Width="80" Height="25" FontWeight="Normal" FontSize="16" Click="btnClear_Click"></Button>
         </Grid>
-        <DataGrid Grid.Row="0" x:Name="gridPracownicy" IsReadOnly="True" AutoGenerateColumns="False" SelectionUnit="FullRow" FontSize="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        
+        <DataGrid Grid.Row="1" x:Name="gridPracownicy" IsReadOnly="True" AutoGenerateColumns="False" SelectionUnit="FullRow" FontSize="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdPracownika" Width="*" Binding="{Binding IdPracownika}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Imie" Width="Auto" Binding="{Binding Imie}"/>
@@ -37,5 +55,15 @@
                 <DataGridTextColumn Header="Data zatrudnienia" Width="Auto" Binding="{Binding DataZatrudnienia}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Height="50" Grid.Column="0" Name="btnAdd" Content="Nowy" FontSize="18" FontWeight="Bold" Click="btnAdd_Click"/>
+            <Button Height="50" Grid.Column="1" Name="btnUpdate" Content="Aktualizuj" FontSize="18" FontWeight="Bold" Click="btnUpdate_Click"/>
+            <Button Height="50" Grid.Column="2" Name="btnDelete" Content="Usuń" FontSize="18" FontWeight="Bold" Click="btnDelete_Click"/>
+        </Grid>
     </Grid>
 </UserControl>

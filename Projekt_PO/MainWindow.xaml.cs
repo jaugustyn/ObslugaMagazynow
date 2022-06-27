@@ -37,5 +37,17 @@ namespace Projekt_PO
             lblwindowname.Content = "Lista pracowników";
             DataContext = new PracownicyViewModel();
         }
+
+        private void btnHurtownie_Click(object sender, RoutedEventArgs e)
+        {
+            lblwindowname.Content = "Lista hurtowni";
+            DataContext = new HurtownieViewModel();
+        }
+
+        private void btnMagazyny_Click(object sender, RoutedEventArgs e)
+        {
+            lblwindowname.Content = "Lista hurtowni";
+            DataContext = new MagazynyViewModel();
+        }
     }
 }
