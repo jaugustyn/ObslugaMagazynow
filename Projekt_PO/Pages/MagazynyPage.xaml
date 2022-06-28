@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="Dodaj magazyn" Grid.ColumnSpan="3" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Dodaj magazyn" Grid.ColumnSpan="3" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Label Content="*Adres:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 5, 25, 5"/>
@@ -28,11 +28,11 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Label Content="*Czy aktywny (operacyjny):" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 5, 25, 5"/>
-                <CheckBox x:Name="chbCzyAktwny" Width="150" Height="20" VerticalContentAlignment="Center" IsChecked="True"/>
+                <CheckBox x:Name="chkCzyAktwny" Width="150" Height="20" VerticalContentAlignment="Center" IsChecked="False"/>
             </StackPanel>
-            <Separator Margin="0, 40, 0, 20"/>
+            <Separator Margin="0, 35, 0, 20"/>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
-                <Label Content="*Sektory:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
+                <Label Content="*Sektory:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25"/>
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Right" Margin="20, 0">
                         <StackPanel.Resources>
@@ -41,8 +41,8 @@
                                 <Setter Property="Width" Value="120"/>
                             </Style>
                         </StackPanel.Resources>
-                        <TextBlock FontWeight="Bold" Margin="0,0,0,10">ListBox selection</TextBlock>
-                        <Button Name="btnShowSelectedItem" Click="btnShowSelectedItem_Click">Pokaż wybrane</Button>
+                        <TextBlock FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Center">Wybierz sektory</TextBlock>
+                        <Button Name="btnShowSelectedItem" Click="btnShowSelectedItem_Click">Wyświetl opisy</Button>
                         <Button Name="btnSelectLast" Click="btnSelectLast_Click">Wybierz ostatni</Button>
                         <Button Name="btnSelectNext" Click="btnSelectNext_Click">Wybierz następny</Button>
                         <Button Name="btnSelectAll" Click="btnSelectAll_Click">Wybierz wszystkie</Button>
@@ -62,5 +62,7 @@
                 </DockPanel>
             </StackPanel>
         </StackPanel>
+        <Button x:Name="btnSave" Content="Zapisz" Grid.Column="0" Grid.Row="2" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnSave_Click"/>
+        <Button x:Name="btnClose" Content="Zamknij" Grid.Column="1" Grid.Row="2" Width="100"  HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnClose_Click"/>
     </Grid>
 </Window>

@@ -32,7 +32,10 @@ namespace Projekt_PO.Views
 
         private void FillGrid()
         {
-            list = db.Magazynies.ToList();
+            using (var db = new Obsluga_magazynow_DBContext())
+            {
+                list = db.Magazynies.ToList();
+            }
             gridMagazyny.ItemsSource = list;
         }
 
@@ -66,6 +69,12 @@ namespace Projekt_PO.Views
                 if (MessageBox.Show($"Czy jesteś pewien że chcesz usunąć magazyn {model.Adres}?", "Uwaga", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     Magazyny m = db.Magazynies.Find(model.IdMagazynu);
+                    
+                    var sek = db.SektoryMagazynows.Where(x => x.MagazynId == model.IdMagazynu).Select(x => x.SektorId);
+                    foreach (var index in sek) // Najpierw trzeba usunąć sektory
+                        db.SektoryMagazynows.Remove(db.SektoryMagazynows.Find(model.IdMagazynu, index));
+                    db.SaveChanges();
+                    
                     db.Magazynies.Remove(m);
                     db.SaveChanges();
                     MessageBox.Show("Magazyn został usunięty.");

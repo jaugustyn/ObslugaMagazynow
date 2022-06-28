@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="exit.png" />
+    <None Remove="invoice.png" />
+    <None Remove="package.png" />
+    <None Remove="sector.png" />
+    <None Remove="team.png" />
+    <None Remove="warehouse.png" />
+    <None Remove="wholesale.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,6 +32,16 @@
   <ItemGroup>
     <Folder Include="DB\" />
     <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="exit.png" />
+    <Resource Include="invoice.png" />
+    <Resource Include="package.png" />
+    <Resource Include="sector.png" />
+    <Resource Include="team.png" />
+    <Resource Include="warehouse.png" />
+    <Resource Include="wholesale.png" />
   </ItemGroup>
 
 </Project>

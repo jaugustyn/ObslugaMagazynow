@@ -48,6 +48,7 @@ namespace Projekt_PO
                     db.Hurtownies.Update(update);
                     db.SaveChanges();
                     MessageBox.Show("Hurtownia została zaaktualizowana.");
+                    this.Close();
                 }
                 else
                 {
@@ -57,8 +58,10 @@ namespace Projekt_PO
                     h.Nip = txtNip.Text.Trim();
 
                     db.Hurtownies.Add(h);
+                    MessageBox.Show(h.IdHurtowni.ToString());
                     db.SaveChanges();
                     MessageBox.Show("Hurtownia została dodana.");
+                    this.Close();
                 }
             }
         }

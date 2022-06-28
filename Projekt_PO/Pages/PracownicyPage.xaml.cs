@@ -34,13 +34,14 @@ namespace Projekt_PO
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // var stanowiskoList = db.Pracownicies.Select(x => x.Stanowisko).Distinct().ToList(); // Zależy od pracowników, przydałaby się tabela osobna dla listy stanowisk
+            // cmbStanowisko.ItemsSource = stanowiskoList;
+            
             var magazynList = db.Magazynies.Where(x => x.CzyAktywny == true).ToList();
             
             cmbPlec.ItemsSource = new string[] {"Mężczyzna", "Kobieta"};
             cmbPlec.SelectedIndex = -1;
 
             cmbStanowisko.ItemsSource = new string[] { "Logistyk", "Magazynier", "Praktykant", "Informatyk", "Kierownik ds. Logistyki i Dystrybucji" };
-            // cmbStanowisko.ItemsSource = stanowiskoList;
             cmbStanowisko.SelectedIndex = -1;
 
             cmbMagazyn.ItemsSource = magazynList;
@@ -90,7 +91,7 @@ namespace Projekt_PO
                     update.Email = txtEmail.Text.Trim();
                     update.Plec = cmbPlec.SelectedValue.ToString()?[0].ToString().ToLower();
                     update.Stanowisko = cmbStanowisko.SelectedValue.ToString();
-                    update.NrTel = txtNrTel.Text[0..3] + "-" + txtNrTel.Text[3..6] + "-" + txtNrTel.Text[6..9];
+                    update.NrTel = txtNrTel.Text.Length < 10 ? txtNrTel.Text[0..3] + "-" + txtNrTel.Text[3..6] + "-" + txtNrTel.Text[6..9] : txtNrTel.Text.Trim();
                     update.Pesel = txtPesel.Text;
                     update.MagazynId = Convert.ToInt32(cmbMagazyn.SelectedValue);
 
@@ -115,6 +116,7 @@ namespace Projekt_PO
                     db.Pracownicies.Update(update);
                     db.SaveChanges();
                     MessageBox.Show("Pracownik został zaaktualizowany.");
+                    this.Close();
                 }
                 else
                 {
@@ -139,7 +141,7 @@ namespace Projekt_PO
                     p.Email = txtEmail.Text;
                     p.Plec = cmbPlec.SelectedValue.ToString()?[0].ToString().ToLower();
                     p.Stanowisko = cmbStanowisko.SelectedValue.ToString();
-                    p.NrTel = txtNrTel.Text[0..3] + "-" + txtNrTel.Text[3..6] + "-" + txtNrTel.Text[6..9];
+                    p.NrTel = txtNrTel.Text.Length < 10 ? txtNrTel.Text[0..3] + "-" + txtNrTel.Text[3..6] + "-" + txtNrTel.Text[6..9] : txtNrTel.Text.Trim();
                     p.Pesel = txtPesel.Text;
                     p.AdresId = db.Adresies.OrderBy(x => x.IdAdresu).Last().IdAdresu;
                     p.MagazynId = Convert.ToInt32(cmbMagazyn.SelectedValue);
@@ -150,6 +152,7 @@ namespace Projekt_PO
                     cmbPlec.SelectedIndex = -1;
                     cmbMagazyn.SelectedIndex = -1;
                     MessageBox.Show("Pracownik został dodany.");
+                    this.Close();
                 }
             }
         }

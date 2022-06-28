@@ -49,5 +49,11 @@ namespace Projekt_PO
             lblwindowname.Content = "Lista hurtowni";
             DataContext = new MagazynyViewModel();
         }
+
+        private void btnPakiety_Click(object sender, RoutedEventArgs e)
+        {
+            lblwindowname.Content = "Lista pakietów";
+            DataContext = new PakietyViewModel();
+        }
     }
 }

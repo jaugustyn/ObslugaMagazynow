@@ -73,6 +73,7 @@ namespace Projekt_PO
                 db.Fakturies.Update(update);
                 db.SaveChanges();
                 MessageBox.Show($"Zaaktualizowano fakturę o numerze: {model.NumerFaktury}");
+                this.Close();
 
             }
             else //ADD
@@ -93,6 +94,7 @@ namespace Projekt_PO
                 db.Fakturies.Add(newfaktura);
                 db.SaveChanges();
                 MessageBox.Show("Faktura została dodana.");
+                this.Close();
             }
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)

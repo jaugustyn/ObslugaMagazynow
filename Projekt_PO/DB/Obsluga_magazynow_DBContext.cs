@@ -31,7 +31,7 @@ namespace Projekt_PO.DB
         {
             if (!optionsBuilder.IsConfigured)
             {
-               optionsBuilder.UseSqlServer("Server=.; Database=Obsluga_magazynow_DB; trusted_Connection=True;");
+               optionsBuilder.UseSqlServer("Server=.; Database=Obsluga_magazynow_DB; trusted_Connection=True;MultipleActiveResultSets=true;");
             }
         }
 

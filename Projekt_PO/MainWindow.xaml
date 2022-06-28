@@ -7,15 +7,15 @@
         xmlns:views="clr-namespace:Projekt_PO.Views"
         xmlns:viewmodels="clr-namespace:Projekt_PO.ViewModels"
         mc:Ignorable="d"
-        Title="WPF - Obsługa magazynów" Height="640" Width="1200" FontSize="24" FontWeight="Bold" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF33C163">
+        Title="WPF - Obsługa magazynów" Height="640" Width="1200" FontSize="24" FontWeight="Medium" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF92D2A8">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="240*"/>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="940*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="80"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -24,8 +24,8 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ContentControl Content="{ Binding }" Grid.Column="2" Grid.Row="1" Grid.RowSpan="8" Height="Auto" Width="Auto"/>
-        <Label x:Name="lblwindowname" Content="" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ContentControl Content="{ Binding }" Grid.Column="2" Grid.Row="1" Grid.RowSpan="8" Height="Auto" Width="Auto" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblwindowname" Content="" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <StackPanel Grid.Row="1">
             <Button Name="btnMagazyny" Height="60" Width="250" HorizontalAlignment="Left" Click="btnMagazyny_Click">
                 <Grid Width="230">
@@ -33,8 +33,8 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="MagazynyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Magazyny" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image x:Name="MagazynyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/warehouse.png"/>
+                    <TextBlock Text="Magazyny" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
         </StackPanel>
@@ -45,8 +45,8 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="PracownicyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Pracownicy" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image x:Name="PracownicyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/team.png"/>
+                    <TextBlock Text="Pracownicy" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
         </StackPanel>
@@ -57,44 +57,44 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="FakturyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Faktury" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image x:Name="FakturyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/invoice.png"/>
+                    <TextBlock Text="Faktury" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="4">
-            <Button Name="btnPakiety" Height="60" Width="250" HorizontalAlignment="Left">
+            <Button Name="btnPakiety" Height="60" Width="250" HorizontalAlignment="Left" Click="btnPakiety_Click">
                 <Grid Width="230">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="PakietyImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Pakiety" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image x:Name="PakietyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/package.png"/>
+                    <TextBlock Text="Pakiety" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="5">
+            <Button Name="btnSektory" Height="60" Width="250" HorizontalAlignment="Left">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="SektoryImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/sector.png"/>
+                    <TextBlock Text="Sektory" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="6">
             <Button Name="btnHurtownie" Height="60" Width="250" HorizontalAlignment="Left" Click="btnHurtownie_Click">
                 <Grid Width="230">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="PositionImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Hurtownie" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                </Grid>
-            </Button>
-        </StackPanel>
-        <StackPanel Grid.Row="6">
-            <Button Name="btnLogOut" Height="60" Width="250" HorizontalAlignment="Left">
-                <Grid Width="230">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Image x:Name="LogOutImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Log Out" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image x:Name="PositionImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/wholesale.png"/>
+                    <TextBlock Text="Hurtownie" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
         </StackPanel>
@@ -105,8 +105,8 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="ExitImage" HorizontalAlignment="Left" Height="Auto" Width="73" Source="Images/x"/>
-                    <TextBlock Text="Exit" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image x:Name="ExitImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/exit.png"/>
+                    <TextBlock Text="Wyjście" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
         </StackPanel>
@@ -114,7 +114,7 @@
     <Window.Resources>
         <DataTemplate x:Name="FakturyTemplate" DataType="{ x:Type viewmodels:FakturyViewModel }">
             <views:FakturyList>
-                
+
             </views:FakturyList>
         </DataTemplate>
         <DataTemplate x:Name="PracownicyTemplate" DataType="{x:Type viewmodels:PracownicyViewModel}">
@@ -131,6 +131,11 @@
             <views:MagazynyList>
 
             </views:MagazynyList>
+        </DataTemplate>
+        <DataTemplate x:Name="PakietyTemplate" DataType="{x:Type viewmodels:PakietyViewModel}">
+            <views:PakietyList>
+
+            </views:PakietyList>
         </DataTemplate>
     </Window.Resources>
 </Window>
