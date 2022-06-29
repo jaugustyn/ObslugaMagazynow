@@ -94,6 +94,7 @@ namespace Projekt_PO.Pages
                     
                     // Jedyny działający sposób...
                     db.Database.ExecuteSqlRaw("INSERT INTO pakiety(kod, magazyn_id, sektor_id) VALUES({0}, {1}, {2} );", txtKod.Text.Trim(), Convert.ToInt32(cmbMagazyn.SelectedValue), Convert.ToInt32(cmbSektor.SelectedValue));
+                    // db.Pakieties.Add(p);
                     db.SaveChanges();
                     this.Close();
                 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
 using Projekt_PO.DB;
 using Projekt_PO.ViewModels;
 
@@ -33,9 +34,7 @@ namespace Projekt_PO.Pages
             List<Sektory> sektory = new List<Sektory>();
 
             db.Sektories.ToList().ForEach(x => sektory.Add(x));
-
             listSektory.ItemsSource = sektory;
-
 
             if (model != null && model.IdMagazynu != 0)
             {
@@ -44,14 +43,14 @@ namespace Projekt_PO.Pages
                 chkCzyAktwny.IsChecked = model.CzyAktywny;
 
                 var wybraneSektory = db.SektoryMagazynows.Where(x => x.MagazynId == model.IdMagazynu).ToList();
-                foreach (var obj in wybraneSektory)
+                foreach (SektoryMagazynow obj in wybraneSektory)
                 {
-                    listSektory.SelectedItems.Add(listSektory.Items[obj.SektorId - 1]);
+                    listSektory.SelectedItems.Add(obj.Sektor);
                 }
             }
             
         }
-		private void lbTodoList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		private void listSektory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (listSektory.SelectedItem != null)
                 this.Title = (listSektory.SelectedItem as Sektory)?.Oznaczenie;
@@ -105,18 +104,32 @@ namespace Projekt_PO.Pages
                     if (chkCzyAktwny.IsChecked != null) update.CzyAktywny = chkCzyAktwny.IsChecked.Value;
                     update.IloscSektorow = (byte)listSektory.SelectedItems.Count;
                     update.IloscPracownikow = model.IloscPracownikow;
-
-                    var sek = db.SektoryMagazynows.Where(x => x.MagazynId == model.IdMagazynu).Select(x => x.SektorId);
-                    foreach (var index in sek) // Sektory - magazyny to tabela many to many, należy usunąć istniejące rekordy i dodać nowe (klucz kompozytowy)
-                        db.SektoryMagazynows.Remove(db.SektoryMagazynows.Find(model.IdMagazynu, index));
+                    
+                    var sek = db.SektoryMagazynows.Where(x => x.MagazynId == model.IdMagazynu).Include(x => x.Pakieties).ToList();
+                    foreach (SektoryMagazynow sektor in sek) // Wszystkie sektory przed zmianą
+                    {
+                        if (!listSektory.SelectedItems.Contains(sektor.Sektor)) // jeśli nie ma sektoru w wybranych to trzeba go usunąć
+                        {
+                            if (sektor.Pakieties.Count > 0)
+                            {
+                                MessageBox.Show($"Sektor {sektor.Sektor.Oznaczenie} w magazynie {model.Adres} nie jest pusty. Znajduje się w nim {sektor.Pakieties.Count} pakietów.");
+                                this.Close();
+                                return;
+                            }
+                            db.SektoryMagazynows.Remove(sektor);
+                        }
+                    } 
                     db.SaveChanges();
                     
                     db.Magazynies.Update(update);
-
-                    foreach (var obj in listSektory.SelectedItems)
+                    
+                    foreach (Sektory obj in listSektory.SelectedItems)
                     {
-                        var wybranySektor = new SektoryMagazynow() { MagazynId = model.IdMagazynu, SektorId = listSektory.Items.IndexOf(obj) + 1 };
-                        db.SektoryMagazynows.Add(wybranySektor);
+                        if (db.SektoryMagazynows.Find(model.IdMagazynu, obj.IdSektoru) == null)
+                        {
+                            var wybranySektor = new SektoryMagazynow() { MagazynId = model.IdMagazynu, SektorId = obj.IdSektoru };
+                            db.SektoryMagazynows.Add(wybranySektor);
+                        }
                     }
                     db.SaveChanges();
 
@@ -140,10 +153,10 @@ namespace Projekt_PO.Pages
 
                     db.Magazynies.Add(m);
                     db.SaveChanges();
-
-                    foreach (var obj in listSektory.SelectedItems)
+                    
+                    foreach (Sektory obj in listSektory.SelectedItems)
                     {
-                        var wybranySektor = new SektoryMagazynow() { MagazynId = db.Magazynies.OrderBy(x => x.IdMagazynu).Last().IdMagazynu, SektorId = listSektory.Items.IndexOf(obj) + 1 };
+                        var wybranySektor = new SektoryMagazynow() { MagazynId = db.Magazynies.OrderBy(x => x.IdMagazynu).Last().IdMagazynu, SektorId = obj.IdSektoru};
                         db.SektoryMagazynows.Add(wybranySektor);
                     }
 

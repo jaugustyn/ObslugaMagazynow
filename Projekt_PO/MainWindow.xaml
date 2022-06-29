@@ -25,7 +25,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ContentControl Content="{ Binding }" Grid.Column="2" Grid.Row="1" Grid.RowSpan="8" Height="Auto" Width="Auto" Grid.ColumnSpan="2"/>
-        <Label x:Name="lblwindowname" Content="" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label x:Name="lblwindowname" Content="" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28"/>
         <StackPanel Grid.Row="1">
             <Button Name="btnMagazyny" Height="60" Width="250" HorizontalAlignment="Left" Click="btnMagazyny_Click">
                 <Grid Width="230">
@@ -75,7 +75,7 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="5">
-            <Button Name="btnSektory" Height="60" Width="250" HorizontalAlignment="Left">
+            <Button Name="btnSektory" Height="60" Width="250" HorizontalAlignment="Left" Click="btnSektory_Click">
                 <Grid Width="230">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -136,6 +136,11 @@
             <views:PakietyList>
 
             </views:PakietyList>
+        </DataTemplate>
+        <DataTemplate x:Name="SektoryTemplate" DataType="{x:Type viewmodels:SektoryViewModel}">
+            <views:SektoryList>
+
+            </views:SektoryList>
         </DataTemplate>
     </Window.Resources>
 </Window>

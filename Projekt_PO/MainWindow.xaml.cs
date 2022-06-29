@@ -55,5 +55,11 @@ namespace Projekt_PO
             lblwindowname.Content = "Lista pakietów";
             DataContext = new PakietyViewModel();
         }
+
+        private void btnSektory_Click(object sender, RoutedEventArgs e)
+        {
+            lblwindowname.Content = "Lista sektorów w magazynach";
+            DataContext = new SektoryViewModel();
+        }
     }
 }

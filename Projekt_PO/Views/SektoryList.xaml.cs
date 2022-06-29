@@ -20,17 +20,17 @@ using Projekt_PO.ViewModels;
 namespace Projekt_PO.Views
 {
     /// <summary>
-    /// Interaction logic for PakietyList.xaml
+    /// Interaction logic for SektoryList.xaml
     /// </summary>
-    public partial class PakietyList : UserControl
+    public partial class SektoryList : UserControl
     {
-        public PakietyList()
+        public SektoryList()
         {
             InitializeComponent();
         }
         private Obsluga_magazynow_DBContext db = new Obsluga_magazynow_DBContext();
-        private List<PakietyModel> _list = new List<PakietyModel>();
-        private List<Sektory> _sekList = new List<Sektory>();
+        private List<SektoryModel> _list = new List<SektoryModel>();
+        private List<Sektory> _sektoryList = new List<Sektory>();
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -38,64 +38,69 @@ namespace Projekt_PO.Views
             cmbMagazyn.DisplayMemberPath = "Adres";
             cmbMagazyn.SelectedValuePath = "IdMagazynu";
             cmbMagazyn.SelectedIndex = -1;
-
-            _sekList = db.Sektories.ToList();
-            cmbSektor.ItemsSource = _sekList;
-            cmbSektor.DisplayMemberPath = "Oznaczenie";
-            cmbSektor.SelectedValuePath = "Oznaczenie";
-            cmbSektor.SelectedIndex = -1;
             
             FillGrid();
         }
+
         private void FillGrid()
         {
+            _sektoryList = db.Sektories.ToList();
+            listSektory.ItemsSource = _sektoryList;
+            cmbSektor.ItemsSource = _sektoryList;
+            cmbSektor.DisplayMemberPath = "Oznaczenie";
+            cmbSektor.SelectedValuePath = "Oznaczenie";
+            cmbSektor.SelectedIndex = -1;
+
             using (var db = new Obsluga_magazynow_DBContext())
             {
-                var list = db.Pakieties.Include(x => x.SektoryMagazynow).Select(x => new PakietyModel()
+                var list = db.SektoryMagazynows.Include(x => x.Sektor).Include(x => x.Magazyn).Select(x => new SektoryModel()
                 {
-                    IdPakietu = x.IdPakietu,
-                    Kod = x.Kod,
-                    SektorId = x.SektorId,
                     MagazynId = x.MagazynId,
-                    OznaczenieSektoru = x.SektoryMagazynow.Sektor.Oznaczenie,
-                    AdresMagazynu = x.SektoryMagazynow.Magazyn.Adres,
-                    LimitSektoru = x.SektoryMagazynow.Sektor.Limit,
+                    SektorId = x.SektorId,
+                    Oznaczenie = x.Sektor.Oznaczenie,
+                    OpisSektoru = x.Sektor.Opis,
+                    OpisMagazynu = x.Magazyn.Opis,
+                    Limit = x.Sektor.Limit,
+                    Adres = x.Magazyn.Adres,
                 }).ToList();
 
-                gridPakiety.ItemsSource = list;
+                gridSektory.ItemsSource = list;
                 _list = list;
             }
         }
-
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            PakietyPage page = new PakietyPage();
+            SektoryPage page = new SektoryPage();
             page.ShowDialog();
             FillGrid();
         }
-
+        
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (gridPakiety.SelectedItem is PakietyModel model && model.IdPakietu != 0)
+            if (listSektory.SelectedItem is Sektory model && model.IdSektoru != 0)
             {
-                PakietyPage page = new PakietyPage();
+                SektoryPage page = new SektoryPage();
                 page.model = model;
                 page.ShowDialog();
                 FillGrid();
             }
         }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (gridPakiety.SelectedItem is PakietyModel model && model.IdPakietu != 0)
+            Sektory model = (Sektory)listSektory.SelectedItem;
+            if (model != null && model.IdSektoru != 0)
             {
-                if (MessageBox.Show($"Czy jesteś pewien że chcesz usunąć ten pakiet o kodzie {model.Kod}?", "Uwaga", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                var s = db.SektoryMagazynows.Any(x => x.SektorId == model.IdSektoru);
+                if (s)
                 {
-                    Pakiety p = db.Pakieties.Find(model.IdPakietu);
-                    
-                    db.Pakieties.Remove(p);
+                    MessageBox.Show("Żeby usunąć sektor, nie może być on przypisany do jakiegokolwiek magazynu.", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                if (MessageBox.Show($"Czy jesteś pewien że chcesz usunąć sektor {model.Oznaczenie.Trim()}?{Environment.NewLine}Sektor nie może być przypisany do jakiegokolwiek magazynu, nie mogą się również w nim znajdować pakiety.", "Uwaga", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    db.Sektories.Remove(model);
                     db.SaveChanges();
-                    MessageBox.Show("Pakiet został usunięty.");
+                    MessageBox.Show("Sektor został usunięty");
                     FillGrid();
                 }
             }
@@ -103,29 +108,27 @@ namespace Projekt_PO.Views
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            List<PakietyModel> searchList = _list;
-            if (txtKod.Text.Trim() != "")
-                searchList = searchList.Where(x => x.Kod.ToUpper().Contains(txtKod.Text.Trim().ToUpper())).ToList();
+            List<SektoryModel> searchList = _list;
+            
             if (cmbMagazyn.SelectedIndex != -1)
                 searchList = searchList.Where(x => x.MagazynId == Convert.ToInt32(cmbMagazyn.SelectedValue)).ToList();
             if (cmbSektor.SelectedIndex != -1)
-                searchList = searchList.Where(x => x.OznaczenieSektoru == cmbSektor.SelectedValue.ToString()).ToList();
+                searchList = searchList.Where(x => x.Oznaczenie == cmbSektor.SelectedValue.ToString()).ToList();
 
-            gridPakiety.ItemsSource = searchList;
+            gridSektory.ItemsSource = searchList;
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            txtKod.Clear();
             cmbMagazyn.SelectedIndex = -1;
-            cmbSektor.ItemsSource = _sekList;
+            cmbSektor.ItemsSource = _sektoryList;
             cmbSektor.DisplayMemberPath = "Oznaczenie";
             cmbSektor.SelectedValuePath = "Oznaczenie";
             cmbSektor.SelectedIndex = -1;
             FillGrid();
         }
 
-        private void ListSektory_Selection(object sender, SelectionChangedEventArgs e) // cmbMagazyny on change
+        private void cmbMagazyn_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             cmbSektor.ItemsSource = db.SektoryMagazynows.Include(x => x.Sektor).Where(x => x.MagazynId == Convert.ToInt32(cmbMagazyn.SelectedValue)).ToList();
             cmbSektor.DisplayMemberPath = "Sektor.Oznaczenie";

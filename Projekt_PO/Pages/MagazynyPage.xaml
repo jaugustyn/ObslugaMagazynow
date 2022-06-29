@@ -47,7 +47,7 @@
                         <Button Name="btnSelectNext" Click="btnSelectNext_Click">Wybierz następny</Button>
                         <Button Name="btnSelectAll" Click="btnSelectAll_Click">Wybierz wszystkie</Button>
                     </StackPanel>
-                    <ListBox x:Name="listSektory" Width="Auto" Height="Auto" HorizontalContentAlignment="Stretch" SelectionMode="Multiple" SelectionChanged="lbTodoList_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListBox x:Name="listSektory" Width="Auto" Height="Auto" HorizontalContentAlignment="Stretch" SelectionMode="Multiple" SelectionChanged="listSektory_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="0,2">
@@ -55,6 +55,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding Oznaczenie}"/>
+                                    <TextBlock Text="{Binding IdSektoru}" Visibility="Hidden"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

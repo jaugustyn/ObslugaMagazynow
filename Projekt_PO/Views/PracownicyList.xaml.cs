@@ -29,7 +29,7 @@ namespace Projekt_PO.Views
         }
 
         private Obsluga_magazynow_DBContext db = new Obsluga_magazynow_DBContext();
-        private List<PracownicyModel> list = new List<PracownicyModel>();
+        private List<PracownicyModel> _list = new List<PracownicyModel>();
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -45,26 +45,6 @@ namespace Projekt_PO.Views
             cmbMagazyn.SelectedValuePath = "IdMagazynu";
             cmbMagazyn.SelectedIndex = -1;
 
-            list = db.Pracownicies.Include(x => x.Magazyn).Include(x => x.Adres).Select(x => new PracownicyModel()
-            {
-                Id = x.IdPracownika,
-                AdresId = x.AdresId,
-                Miejscowosc = x.Adres.Miejscowosc,
-                KodPocztowy = x.Adres.KodPocztowy,
-                NrLokalu = x.Adres.NrDomu != null ? x.Adres.NrDomu : x.Adres.NrMieszkania,
-                Ulica = x.Adres.Ulica,
-                MagazynId = x.MagazynId,
-                Stanowisko = x.Stanowisko,
-                Imie = x.Imie,
-                Nazwisko = x.Nazwisko,
-                NrTel = x.NrTel,
-                Email = x.Email,
-                Pesel = x.Pesel,
-                DataUrodzenia = x.DataUrodzenia,
-                Plec = x.Plec,
-                DataZatrudnienia = x.DataZatrudnienia
-            }).OrderBy(x => x.Nazwisko).ToList();
-            
             FillGrid();
         }
 
@@ -113,6 +93,7 @@ namespace Projekt_PO.Views
                 modelList.Add(model);
             }
             gridPracownicy.ItemsSource = modelList;
+            _list = modelList;
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -134,15 +115,15 @@ namespace Projekt_PO.Views
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            List<PracownicyModel> searchList = list;
+            List<PracownicyModel> searchList = _list;
             if (txtImie.Text.Trim() != "")
                 searchList = searchList.Where(x => x.Imie.Contains(txtImie.Text)).ToList();
             if (txtNazwisko.Text.Trim() != "")
                 searchList = searchList.Where(x => x.Nazwisko.Contains(txtNazwisko.Text)).ToList();
             if (cmbMagazyn.SelectedIndex != -1)
-                searchList = searchList.Where(x => x.MagazynId == (int)cmbMagazyn.SelectedValue).ToList();
+                searchList = searchList.Where(x => x.MagazynId == Convert.ToInt32(cmbMagazyn.SelectedValue)).ToList();
             if (cmbStanowisko.SelectedIndex != -1)
-                searchList = searchList.Where(x => x.Stanowisko ==cmbStanowisko.SelectedItem.ToString()).ToList();
+                searchList = searchList.Where(x => x.Stanowisko == cmbStanowisko.SelectedItem.ToString()).ToList();
 
             gridPracownicy.ItemsSource = searchList;
         }
