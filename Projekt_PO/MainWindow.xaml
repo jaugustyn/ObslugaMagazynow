@@ -99,7 +99,7 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="7">
-            <Button Name="btnExit" Height="60" Width="250" HorizontalAlignment="Left">
+            <Button Name="btnExit" Height="60" Width="250" HorizontalAlignment="Left" Click="btnExit_Click">
                 <Grid Width="230">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>

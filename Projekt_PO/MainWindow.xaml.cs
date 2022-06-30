@@ -61,5 +61,9 @@ namespace Projekt_PO
             lblwindowname.Content = "Lista sektorów w magazynach";
             DataContext = new SektoryViewModel();
         }
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

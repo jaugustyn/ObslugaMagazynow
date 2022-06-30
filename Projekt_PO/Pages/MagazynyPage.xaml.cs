@@ -60,7 +60,7 @@ namespace Projekt_PO.Pages
         {
             var result = new StringBuilder();
             foreach (object o in listSektory.Items)
-                result.Append((o as Sektory)?.Oznaczenie + "-  " + (o as Sektory)?.Opis + Environment.NewLine);
+                result.Append((o as Sektory)?.Oznaczenie.Trim() + " - " + (o as Sektory)?.Opis + Environment.NewLine);
             
             MessageBox.Show(result.ToString());
         }
