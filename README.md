@@ -1,6 +1,7 @@
 # Aplikacja do obsługi magazynów
 
 ### Użyte technologie:
+- .NET 5
 - WPF
 - Entity framework 5.0.17
 
