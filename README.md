@@ -7,7 +7,7 @@
 
 ### Wymagania wstępne:
 - Microsoft Visual Studio
-- Microsoft SQL Server (Aplikacja wymaga bazy danych do przechowywania danych)
+- Microsoft SQL Server (Aplikacja wymaga bazy danych, z którą się łączy)
 
 ### Instalacja
 1. Stwórz baze danych ze skryptu *'ObslugaMagazynow.sql'*
