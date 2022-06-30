@@ -8,13 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="exit.png" />
-    <None Remove="invoice.png" />
-    <None Remove="package.png" />
-    <None Remove="sector.png" />
-    <None Remove="team.png" />
-    <None Remove="warehouse.png" />
-    <None Remove="wholesale.png" />
+    <None Remove="Images\exit.png" />
+    <None Remove="Images\invoice.png" />
+    <None Remove="Images\package.png" />
+    <None Remove="Images\sector.png" />
+    <None Remove="Images\team.png" />
+    <None Remove="Images\warehouse.png" />
+    <None Remove="Images\wholesale.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\invoice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -31,17 +37,27 @@
 
   <ItemGroup>
     <Folder Include="DB\" />
-    <Folder Include="Images\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="exit.png" />
-    <Resource Include="invoice.png" />
-    <Resource Include="package.png" />
-    <Resource Include="sector.png" />
-    <Resource Include="team.png" />
-    <Resource Include="warehouse.png" />
-    <Resource Include="wholesale.png" />
+    <Resource Include="Images\exit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\package.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\sector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\team.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\warehouse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\wholesale.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

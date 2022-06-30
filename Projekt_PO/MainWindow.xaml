@@ -33,7 +33,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="MagazynyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/warehouse.png"/>
+                    <Image x:Name="MagazynyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="pack://application:,,,/Images/warehouse.png"/>
                     <TextBlock Text="Magazyny" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
@@ -45,7 +45,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="PracownicyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/team.png"/>
+                    <Image x:Name="PracownicyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="pack://application:,,,/Images/team.png"/>
                     <TextBlock Text="Pracownicy" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
@@ -57,7 +57,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="FakturyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/invoice.png"/>
+                    <Image x:Name="FakturyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="pack://application:,,,/Images/invoice.png"/>
                     <TextBlock Text="Faktury" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
@@ -69,7 +69,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="PakietyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/package.png"/>
+                    <Image x:Name="PakietyImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="pack://application:,,,/Images/package.png"/>
                     <TextBlock Text="Pakiety" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
@@ -81,7 +81,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="SektoryImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/sector.png"/>
+                    <Image x:Name="SektoryImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="pack://application:,,,/Images/sector.png"/>
                     <TextBlock Text="Sektory" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
@@ -93,7 +93,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="PositionImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/wholesale.png"/>
+                    <Image x:Name="PositionImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="pack://application:,,,/Images/wholesale.png"/>
                     <TextBlock Text="Hurtownie" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
@@ -105,7 +105,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="ExitImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="/exit.png"/>
+                    <Image x:Name="ExitImage" HorizontalAlignment="Left" Height="Auto" Width="Auto" Margin="5, 2" Source="pack://application:,,,/Images/exit.png"/>
                     <TextBlock Text="Wyjście" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0"/>
                 </Grid>
             </Button>
